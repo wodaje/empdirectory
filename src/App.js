@@ -1,27 +1,45 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Discover from "./pages/Discover";
-import About from "./pages/About";
-import Search from "./pages/Search";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
+import API from "./utils/API"
+import {Component} from "react"
+import Table from "./components/Table"
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Navbar />
-        <Wrapper>
-          <Route exact path="/" component={About} />
-          <Route exact path="/about" component={About} />
-          <Route exact path="/discover" component={Discover} />
-          <Route exact path="/search" component={Search} />
-        </Wrapper>
-        <Footer />
-      </div>
-    </Router>
-  );
+class App extends Component {
+  
+  state = {
+
+    employees : []
+
+  }
+
+  componentDidMount(){
+    this.apiEmployee()
+    
+
+  }
+
+  apiEmployee = async () =>{
+
+    const apiResponse = await API.getAllEmployees()
+    
+    this.setState({
+      employees : apiResponse.data.results
+      
+    })
+  }
+
+  render () {
+    
+    return (
+        
+  <div>
+    <h1>Employee Directory Magic</h1>  
+
+      <Table employees = {this.state.employees}/>
+
+  </div>
+    
+    )
+  }
 }
 
 export default App;
