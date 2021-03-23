@@ -3,6 +3,7 @@ import API from "./utils/API"
 import {Component} from "react"
 import Table from "./components/Table"
 
+// setting up class component
 class App extends Component {
   
   state = {
@@ -11,12 +12,13 @@ class App extends Component {
 
   }
 
+// React mounting on states   
   componentDidMount(){
     this.apiEmployee()
     
-
   }
 
+//Set state with api call 
   apiEmployee = async () =>{
 
     const apiResponse = await API.getAllEmployees()
@@ -27,6 +29,7 @@ class App extends Component {
     })
   }
 
+  // sets front end display framework
   render () {
     
     return (

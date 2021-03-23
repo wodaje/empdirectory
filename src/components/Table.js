@@ -8,7 +8,9 @@ export default function Table (props) {
 return (
 <tr>
     <td><img src={employee.picture.thumbnail}></img>  </td>
-
+    <td>{employee.name.first}  </td>
+    <td>{employee.name.last}  </td>
+    <td>{employee.cell}  </td>
 </tr>
 
 )
@@ -19,7 +21,9 @@ return (
  return (<table>
      <tr> 
          <th> Picture </th>
-         <th> Name </th>
+         <th> First Name </th>
+         <th> Last Name </th>
+         <th> Phone </th>
      </tr>
      
 {emp}
