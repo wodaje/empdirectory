@@ -35,21 +35,40 @@ class App extends Component {
     });
   };
 
+  sortEmployee = (e) => {
+    const sortList = this.state.employees.sort(e.target.value);
+
+    this.setState((previous) => {
+      return { ...previous, employees: sortList };
+    });
+  };
+
+
   render() {
     return (
       <div>
-        <h1>Employee Directory Magic</h1>
-        <h2>
-          {" "}
-          <br></br>{" "}
-        </h2>
+        <h1>Employee Directory Muggle</h1>
+        <h4>
+          <br></br>
+        </h4>
+        <h4>
+        <p>Search:
         <input
           name="lastName"
           onChange={this.filterEmployee}
           type="text"
           placeholder="Last Name"
         />
-
+        </p>
+        </h4>
+        <h4>
+        <br></br>
+        <p>Sort: 
+        <button onClick={this.sortEmployee}>Last Name</button>
+        <button onClick={this.sortEmployee}>First Name</button>
+        <button onClick={this.sortEmployee}>Gender</button>
+        </p>
+        </h4>
         <Table employees={this.state.employees} />
       </div>
     );
