@@ -1,15 +1,16 @@
 
-
-
 export default function Table (props) {
 
  const emp = props.employees.map(employee => {
 
 return (
 <tr>
-    <td><img src={employee.picture.thumbnail}></img>  </td>
-    <td>{employee.name.first}  </td>
     <td>{employee.name.last}  </td>
+    <td>{employee.name.first}  </td>
+    <td><img src={employee.picture.thumbnail}></img>  </td>
+    <td>{employee.gender}  </td>
+    <td>{employee.dob.age}  </td>
+    <td>{employee.email}  </td>
     <td>{employee.cell}  </td>
 </tr>
 
@@ -20,10 +21,13 @@ return (
 
  return (<table>
      <tr> 
-         <th> Picture </th>
-         <th> First Name </th>
          <th> Last Name </th>
-         <th> Phone </th>
+         <th> First Name </th>
+         <th> Picture </th>
+         <th> Gender </th>
+         <th> Age </th>
+         <th> Email </th>
+         <th> Cell </th>
      </tr>
      
 {emp}
