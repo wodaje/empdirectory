@@ -3,6 +3,7 @@ import API from "./utils/API";
 import { Component } from "react";
 import Table from "./components/Table";
 
+
 // setting up class component
 class App extends Component {
   state = {
@@ -36,38 +37,67 @@ class App extends Component {
   };
 
   sortEmployee = (e) => {
-    const sortList = this.state.employees.sort(e.target.value);
+    const id = e.target.value;
+    let filterList = [];
 
+    switch (id) {
+      case "first":
+        filterList = this.state.employees.sort((a, b) =>
+          a.name.first > b.name.first ? 1 : -1
+        );
+
+        break;
+
+      case "last":
+        filterList = this.state.employees.sort((a, b) =>
+          a.name.last > b.name.last ? 1 : -1
+        );
+
+        break;
+    }
     this.setState((previous) => {
-      return { ...previous, employees: sortList };
+      return { ...previous, employees: filterList };
     });
   };
-
 
   render() {
     return (
       <div>
-        <h1>Employee Directory Muggle</h1>
+        <h1>The Matrix Slave Directory</h1>
         <h4>
           <br></br>
         </h4>
         <h4>
-        <p>Search:
-        <input
-          name="lastName"
-          onChange={this.filterEmployee}
-          type="text"
-          placeholder="Last Name"
-        />
-        </p>
+          <p>
+            Search *
+            <input
+              name="lastName"
+              onChange={this.filterEmployee}
+              type="text"
+              placeholder="Last Name"
+            />
+            *{" "}
+          </p>
         </h4>
         <h4>
-        <br></br>
-        <p>Sort: 
-        <button onClick={this.sortEmployee}>Last Name</button>
-        <button onClick={this.sortEmployee}>First Name</button>
-        <button onClick={this.sortEmployee}>Gender</button>
-        </p>
+          <br></br>
+          <p>
+            Sort -
+            <button
+              value="last"
+              onClick={this.sortEmployee}
+              className="btn btn-success"
+            >
+              Last Name
+            </button>
+            <button
+              value="first"
+              onClick={this.sortEmployee}
+              className="btn btn-warning"
+            >
+              First Name
+            </button>
+          </p>
         </h4>
         <Table employees={this.state.employees} />
       </div>
